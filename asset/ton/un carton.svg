@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 306.94 235.48" version="1.0">
+  <defs id="defs5">
+    <linearGradient id="linearGradient4237">
+      <stop id="stop4239" stop-color="#b9793f" offset="0"/>
+      <stop id="stop4241" stop-color="#704b27" offset="1"/>
+    </linearGradient>
+    <linearGradient id="linearGradient2197" x1="226.34" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="402.39" gradientTransform="translate(311.3 -227.78)" x2="261.12" y2="469.15"/>
+    <linearGradient id="linearGradient2199" x1="444.11" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="617.2" gradientTransform="translate(292.32 -183.18)" x2="217.97" y2="452.26"/>
+    <linearGradient id="linearGradient2201" x1="637.95" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="393.08" gradientTransform="translate(266.7 -205.01)" x2="630.61" y2="567.3"/>
+    <linearGradient id="linearGradient2203" x1="608.62" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="503.91" gradientTransform="translate(292.32 -183.18)" x2="445.34" y2="612.57"/>
+    <linearGradient id="linearGradient2205" x1="380.83" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="432.99" gradientTransform="translate(292.32 -183.18)" x2="440.25" y2="644.77"/>
+    <linearGradient id="linearGradient2207" x1="582.69" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="569.84" gradientTransform="translate(297.07 -238.22)" x2="472.53" y2="674.25"/>
+    <linearGradient id="linearGradient2209" x1="352.16" xlink:href="#linearGradient4237" gradientUnits="userSpaceOnUse" y1="603.48" gradientTransform="translate(297.79 -238.87)" x2="345.65" y2="712.58"/>
+  </defs>
+  <g id="layer2" transform="translate(-442.2 -227.32)">
+    <g id="g3046" transform="matrix(.57812 0 0 .57812 186.55 195.38)">
+      <path id="path2176" stroke-linejoin="round" d="m685.56 139.7-43.926-50.435-177.4 98.397 62.279 61.821c4.1675-0.1929 160.06-110.65 159.05-109.78z" fill-rule="evenodd" stroke="#000" stroke-width="5.5637" fill="url(#linearGradient2197)"/>
+      <path id="path10131" fill-rule="evenodd" fill="url(#linearGradient2199)" d="m736.44 405.23-1.8041 54.725-224.34-165.04 2.4021-52.954 223.74 163.27z"/>
+      <path id="path2182" stroke-linejoin="round" d="m687.66 137.62c5.6941-4.0672 63.491-79.588 63.491-79.588l219.19 155.02-94.78 113.29" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-width="5.5637" fill="url(#linearGradient2201)"/>
+      <path id="path4155" fill-rule="evenodd" fill="url(#linearGradient2203)" d="m736.13 403.95-2.3533 56.094 169.25-113.13-0.79312-52.743-166.1 109.78z"/>
+      <path id="path13049" fill-rule="evenodd" fill-opacity=".2" fill="#fff" d="m862.07 355.24-2.7371 25.104-56.229 34.924 0.62039-21.699z"/>
+      <path id="path2174" stroke-linejoin="round" d="m512.03 241.21 174.81-101.68 215.56 153.74-165.88 111.76-224.49-163.82z" fill-rule="evenodd" stroke="#000" stroke-width="5.5637" fill="url(#linearGradient2205)"/>
+      <path id="path2178" d="m511.95 241.41-3.0716 53.633" stroke="#000" stroke-linecap="round" stroke-width="5.5121" fill="none"/>
+      <path id="path2184" stroke-linejoin="round" d="m737.95 404.17 46.47 1.8922 168.44-110.15-50.357-3.3368z" fill-rule="evenodd" stroke="#000" stroke-linecap="round" stroke-width="5.5637" fill="url(#linearGradient2207)"/>
+      <path id="path2188" stroke-linejoin="round" d="m514.88 239.9-69.901 36.41 220.93 164.3 73.999-37.144z" fill-rule="evenodd" stroke="#000" stroke-width="5.564" fill="url(#linearGradient2209)"/>
+      <path id="path2186" stroke="#000" stroke-width="5.5637" fill="none" d="m625.27 224.32 179.79 132.45"/>
+      <path id="path2190" stroke-width="1px" stroke="#000" fill-rule="evenodd" d="m771.85 426.41-1.1907-12.441 10.644-4.4537-20.651-6.0346-18.387 23.226 9.9026-3.6117-0.62811 11.961 20.311-8.6464z"/>
+      <path id="path9160" stroke="#000" stroke-width="5.5637" fill="none" d="m684 142.41 1.9404 52.669-0.3911 0.66835"/>
+      <path id="path3014" stroke="#000" stroke-width="5.08" fill="none" d="m683.18 190.16 179.4 130.2"/>
+      <path id="path3016" stroke="#000" stroke-width="5.5637" fill="none" d="m683.07 192.31-129.04 73.26"/>
+      <path id="path3018" stroke="#000" stroke-width="5.7731" fill="none" d="m690.83 428.68 43.039 31.568"/>
+      <path id="path3020" d="m902.92 347.74-171.13 112.66" stroke="#000" stroke-linecap="round" stroke-width="4.1825" fill="none"/>
+      <path id="path3022" stroke="#000" stroke-width="4.2708" fill="none" d="m903.49 347.96-0.35353-21.063"/>
+    </g>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Cardbard box</dc:title>
+        <dc:date>2012-06-08T05:52:10</dc:date>
+        <dc:description>box, cardboard, cardboard box, clip art, clipart, pasteboard, pasteboard box, </dc:description>
+        <dc:source>http://openclipart.org/detail/170471/cardbard-box-by-rdevries-170471</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>rdevries</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>box</rdf:li>
+            <rdf:li>cardboard</rdf:li>
+            <rdf:li>cardboard box</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>pasteboard</rdf:li>
+            <rdf:li>pasteboard box</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
