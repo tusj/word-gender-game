@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
-	"path"
-	"strings"
-	// "github.com/ajstarks/svgo"
+	"github.com/ajstarks/svgo"
 	"io/ioutil"
 	"os"
+	"path"
+	"strings"
 )
 
 const (
@@ -43,6 +43,13 @@ func main() {
 	if !s.IsDir() {
 		fmt.Fprintln(os.Stderr, "Input directory is not a directory")
 		os.Exit(4)
+	}
+
+	// Set absolute path of input directory if it is not
+	if !path.IsAbs(*inputDir) {
+		wd, err := os.Getwd()
+		checkErr(err)
+		*inputDir = path.Join(wd, *inputDir)
 	}
 
 	// Make the output directory if none exists
@@ -95,14 +102,26 @@ func transformStrings(files []string, transformer func(string) string) []string 
 
 func makeCards(inDirectory string, outDirectory string, ending string, files []string) {
 	err := os.Mkdir(path.Join(outDirectory, ending), 0755)
-	checkErr(err)
+	if err != nil {
+		if os.IsNotExist(err) {
+			checkErr(err)
+		}
+	}
 
 	removeFileType := func(s string) string {
 		return strings.Split(s, ".")[0]
 	}
 
 	words := transformStrings(files, removeFileType)
-	for _, v := range words {
+	for i, v := range words {
+		f, err := os.Create(path.Join(outDirectory, ending, v+".svg"))
+		checkErr(err)
+		canvas := svg.New(f)
+		canvas.Start(width, height)
+		canvas.Text(width/2, height/10, ending, "text-anchor:middle;font-size:20px")
+		canvas.Image(width/10, 2*height/10, 8*width/10, 6*height/10, "file://"+path.Join(inDirectory, ending, files[i]))
+		canvas.Text(width/2, 9*height/10, v, "text-anchor:middle;font-size:15px")
+		canvas.End()
 	}
 }
 
