@@ -3,7 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/ajstarks/svgo"
+	// "github.com/ajstarks/svgo"
+	svg "github.com/tusj/go-svg"
 	"io/ioutil"
 	"os"
 	"path"
@@ -11,8 +12,12 @@ import (
 )
 
 const (
-	width  = 70  // px
-	height = 100 // px
+	width    = 70  // px
+	height   = 100 // px
+	vMargin  = width / 10
+	hMargin  = height / 8
+	vSpacing = width / 15
+	hSpacing = height / 15
 )
 
 var inputDir = flag.String("input-dir", "", "Input directory for image files.")
@@ -116,12 +121,17 @@ func makeCards(inDirectory string, outDirectory string, ending string, files []s
 	for i, v := range words {
 		f, err := os.Create(path.Join(outDirectory, ending, v+".svg"))
 		checkErr(err)
-		canvas := svg.New(f)
-		canvas.Start(width, height)
-		canvas.Text(width/2, height/10, ending, "text-anchor:middle;font-size:20px")
-		canvas.Image(width/10, 2*height/10, 8*width/10, 6*height/10, "file://"+path.Join(inDirectory, ending, files[i]))
-		canvas.Text(width/2, 9*height/10, v, "text-anchor:middle;font-size:15px")
-		canvas.End()
+
+		textStyle := svg.Att{
+			"style": "text-anchor: middle; font-size: 20px",
+		}
+
+		canvas := svg.New(width, height)
+		canvas.Text(width/2, height/10, ending, textStyle)
+		canvas.Image(width/10, 2*height/10, 8*width/10, 4*height/10, "file://"+path.Join(inDirectory, ending, files[i]), nil)
+		canvas.Text(width/2, 7*height/10, v, textStyle)
+		err = canvas.Write(f)
+		checkErr(err)
 	}
 }
 
