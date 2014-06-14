@@ -1,30 +1,42 @@
+// This program takes produces a game to learn the genders of
+// some word endings in french.
+
+// It takes an input directory containing images of words which
+// ends with a certain ending, for example -ette, and produces
+// one card for each image. Every card will contain images of
+// the other cards which have the same ending.
+// The program uses the template/html package to produce the cards
+// in html by linking to the pictures in the html.
+
+// The images should be named the name of the object the image
+// depicts, and the images should be organised in subfolders
+// which are named after the proper ending.
+// For example, the subfolder ette should contain images
+// whose depiction ends with -ette, for example une cantine and une copine.
 package main
 
 import (
 	"flag"
 	"fmt"
 	// "github.com/ajstarks/svgo"
-	svg "github.com/tusj/go-svg"
+	// svg "github.com/tusj/go-svg"
 	"io/ioutil"
+	"net/url"
 	"os"
 	"path"
 	"strings"
-)
-
-const (
-	width    = 70  // px
-	height   = 100 // px
-	vMargin  = width / 10
-	hMargin  = height / 8
-	vSpacing = width / 15
-	hSpacing = height / 15
+	"text/template"
 )
 
 var inputDir = flag.String("input-dir", "", "Input directory for image files.")
 var outputDir = flag.String("output-dir", "out", "Output directory for image files.")
+var templateFile = flag.String("template-file", "card.html.template", "Golang template file used to make the cards")
+
+var cardTemplate string
 
 func main() {
 	flag.Parse()
+
 	// Check for compulsory input arguments
 	switch {
 	case *outputDir == "":
@@ -33,6 +45,11 @@ func main() {
 		fmt.Fprintln(os.Stderr, "Input and output directory must be given")
 		os.Exit(1)
 	}
+
+	// Read the template file
+	tmpl, err := ioutil.ReadFile(*templateFile)
+	checkErr(err)
+	cardTemplate = string(tmpl)
 
 	// Sanity check
 	s, err := os.Stat(*inputDir)
@@ -70,32 +87,24 @@ func main() {
 		os.Exit(6)
 	}
 
-	dirFilter := func(f os.FileInfo) bool {
-		return f.IsDir()
-	}
-
-	lsDirs := func(dir string) []string {
-		return ls(dir, dirFilter)
-	}
-
-	fileFilter := func(f os.FileInfo) bool {
-		return !f.IsDir()
-	}
-
-	lsFiles := func(dir string) []string {
-		return ls(dir, fileFilter)
-	}
+	dirFilter := func(f os.FileInfo) bool { return f.IsDir() }
+	lsDirs := func(dir string) []string { return ls(dir, dirFilter) }
+	fileFilter := func(f os.FileInfo) bool { return !f.IsDir() }
+	lsFiles := func(dir string) []string { return ls(dir, fileFilter) }
 
 	makeCardsWrapper := func(ending string, files []string) {
 		makeCards(*inputDir, *outputDir, ending, files)
 	}
 
 	// For every directory in input directory
+	// Make an output directory containing the cards
+	// made with the images of the directory in the input directory
 	for _, d := range lsDirs(*inputDir) {
 		makeCardsWrapper(d, lsFiles(path.Join(*inputDir, d)))
 	}
 }
 
+// General transformer
 func transformStrings(files []string, transformer func(string) string) []string {
 	var f = make([]string, len(files))
 	for i, v := range files {
@@ -105,10 +114,22 @@ func transformStrings(files []string, transformer func(string) string) []string 
 	return f
 }
 
+// The data struct to be used with the template
+type Card struct {
+	Color      string
+	Ending     string
+	Image      string
+	Word       string
+	OtherCards []Card
+}
+
 func makeCards(inDirectory string, outDirectory string, ending string, files []string) {
+	// Don't do anything if there are no input files
 	if len(files) == 0 {
 		return
 	}
+
+	// Make directory if it does not exist
 	err := os.Mkdir(path.Join(outDirectory, ending), 0755)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -116,44 +137,47 @@ func makeCards(inDirectory string, outDirectory string, ending string, files []s
 		}
 	}
 
-	removeFileType := func(s string) string {
-		return strings.Split(s, ".")[0]
-	}
+	// Extract the words from the file names
+	removeFileType := func(s string) string { return strings.Split(s, ".")[0] }
+	removeGender := func(s string) string { return strings.Split(s, " ")[1] }
 
 	words := transformStrings(files, removeFileType)
-	svgs := make([]*svg.SVG, len(words))
-	for i, v := range words {
+	wordsWithoutGender := transformStrings(words, removeGender)
 
-		textStyle := svg.Att{
-			"style": "text-anchor: middle; font-size: 20px",
-		}
+	for _, v := range wordsWithoutGender {
+		fmt.Println(v)
+	}
+	data := make([]Card, len(files))
+	otherCards := make([]Card, len(files))
 
-		canvas := svg.New(width, height)
-		canvas.Text(width/2, height/10, ending, textStyle)
-		canvas.Image(width/10, 2*height/10, 8*width/10, 4*height/10, "file://"+path.Join(inDirectory, ending, files[i]), nil)
-		canvas.Text(width/2, 7*height/10, v, textStyle)
-
-		svgs[i] = canvas
+	for i, v := range files {
+		image, err := url.Parse(path.Join(inDirectory, ending, v))
+		checkErr(err)
+		data[i] = Card{"lightgreen", ending, "file://" + image.String(), words[i], nil}
+		otherCards[i] = Card{Image: data[i].Image, Word: wordsWithoutGender[i]}
 	}
 
-	mWidth := 8 * width / 10
-	mHeight := 2 * height / 10
-	menu := svg.New(mWidth, mHeight)
-	image := svg.New(mWidth, mHeight).Image(0, 0, mWidth, mHeight, "file://"+path.Join(inDirectory, ending, files[0]), nil)
-	menu.HorizontalAlign(0, mHeight, 5, svg.Multiply(4, image)...)
-
-	for _, v := range svgs {
-		v.Add(menu)
+	for i := range data {
+		data[i].OtherCards = otherCards
+	}
+	for _, v := range data {
+		fmt.Println()
+		fmt.Println()
+		fmt.Println(v.Image)
 	}
 
-	for i, v := range svgs {
-		f, err := os.Create(path.Join(outDirectory, ending, words[i]+".svg"))
+	for i := range files {
+		f, err := os.Create(path.Join(outDirectory, ending, words[i]+".html"))
+		defer f.Close()
 		if err != nil {
 			if os.IsExist(err) {
 				checkErr(err)
 			}
 		}
-		err = v.Write(f)
+		tmpl, err := template.New(words[i]).Parse(cardTemplate)
+		checkErr(err)
+
+		err = tmpl.Execute(f, data[i])
 		checkErr(err)
 	}
 }
