@@ -106,6 +106,9 @@ func transformStrings(files []string, transformer func(string) string) []string 
 }
 
 func makeCards(inDirectory string, outDirectory string, ending string, files []string) {
+	if len(files) == 0 {
+		return
+	}
 	err := os.Mkdir(path.Join(outDirectory, ending), 0755)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -118,9 +121,8 @@ func makeCards(inDirectory string, outDirectory string, ending string, files []s
 	}
 
 	words := transformStrings(files, removeFileType)
+	svgs := make([]*svg.SVG, len(words))
 	for i, v := range words {
-		f, err := os.Create(path.Join(outDirectory, ending, v+".svg"))
-		checkErr(err)
 
 		textStyle := svg.Att{
 			"style": "text-anchor: middle; font-size: 20px",
@@ -130,7 +132,28 @@ func makeCards(inDirectory string, outDirectory string, ending string, files []s
 		canvas.Text(width/2, height/10, ending, textStyle)
 		canvas.Image(width/10, 2*height/10, 8*width/10, 4*height/10, "file://"+path.Join(inDirectory, ending, files[i]), nil)
 		canvas.Text(width/2, 7*height/10, v, textStyle)
-		err = canvas.Write(f)
+
+		svgs[i] = canvas
+	}
+
+	mWidth := 8 * width / 10
+	mHeight := 2 * height / 10
+	menu := svg.New(mWidth, mHeight)
+	image := svg.New(mWidth, mHeight).Image(0, 0, mWidth, mHeight, "file://"+path.Join(inDirectory, ending, files[0]), nil)
+	menu.HorizontalAlign(0, mHeight, 5, svg.Multiply(4, image)...)
+
+	for _, v := range svgs {
+		v.Add(menu)
+	}
+
+	for i, v := range svgs {
+		f, err := os.Create(path.Join(outDirectory, ending, words[i]+".svg"))
+		if err != nil {
+			if os.IsExist(err) {
+				checkErr(err)
+			}
+		}
+		err = v.Write(f)
 		checkErr(err)
 	}
 }
