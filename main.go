@@ -20,6 +20,7 @@ import (
 	"fmt"
 	// "github.com/ajstarks/svgo"
 	// svg "github.com/tusj/go-svg"
+	colors "github.com/lucasb-eyer/go-colorful"
 	"io/ioutil"
 	"net/url"
 	"os"
@@ -92,15 +93,21 @@ func main() {
 	fileFilter := func(f os.FileInfo) bool { return !f.IsDir() }
 	lsFiles := func(dir string) []string { return ls(dir, fileFilter) }
 
-	makeCardsWrapper := func(ending string, files []string) {
-		makeCards(*inputDir, *outputDir, ending, files)
+	makeCardsWrapper := func(ending string, files []string, color string) {
+		makeCards(*inputDir, *outputDir, ending, files, color)
 	}
+
+	dirs := lsDirs(*inputDir)
+
+	// Every ending should have its own color
+	// We want to avoid similar colors
+	randColors := colors.FastHappyPalette(len(dirs))
 
 	// For every directory in input directory
 	// Make an output directory containing the cards
 	// made with the images of the directory in the input directory
-	for _, d := range lsDirs(*inputDir) {
-		makeCardsWrapper(d, lsFiles(path.Join(*inputDir, d)))
+	for i, d := range dirs {
+		makeCardsWrapper(d, lsFiles(path.Join(*inputDir, d)), randColors[i].Hex())
 	}
 }
 
@@ -114,16 +121,21 @@ func transformStrings(files []string, transformer func(string) string) []string 
 	return f
 }
 
+type CardRef struct {
+	Image string
+	Word  string
+}
+
 // The data struct to be used with the template
 type Card struct {
 	Color      string
 	Ending     string
 	Image      string
 	Word       string
-	OtherCards []Card
+	OtherCards []CardRef
 }
 
-func makeCards(inDirectory string, outDirectory string, ending string, files []string) {
+func makeCards(inDirectory string, outDirectory string, ending string, files []string, color string) {
 	// Don't do anything if there are no input files
 	if len(files) == 0 {
 		return
@@ -144,26 +156,37 @@ func makeCards(inDirectory string, outDirectory string, ending string, files []s
 	words := transformStrings(files, removeFileType)
 	wordsWithoutGender := transformStrings(words, removeGender)
 
-	for _, v := range wordsWithoutGender {
-		fmt.Println(v)
-	}
 	data := make([]Card, len(files))
-	otherCards := make([]Card, len(files))
+	otherCards := make([][]CardRef, len(files))
 
 	for i, v := range files {
 		image, err := url.Parse(path.Join(inDirectory, ending, v))
 		checkErr(err)
-		data[i] = Card{"lightgreen", ending, "file://" + image.String(), words[i], nil}
-		otherCards[i] = Card{Image: data[i].Image, Word: wordsWithoutGender[i]}
+		data[i] = Card{
+			color,
+			ending,
+			"file://" + image.String(),
+			words[i],
+			nil}
 	}
 
 	for i := range data {
-		data[i].OtherCards = otherCards
+		otherCards[i] = make([]CardRef, len(data)-1)
+		j := 0
+		for k := range data {
+			if k == i {
+				continue
+			}
+
+			otherCards[i][j] = CardRef{
+				data[k].Image,
+				wordsWithoutGender[k]}
+			j++
+		}
 	}
-	for _, v := range data {
-		fmt.Println()
-		fmt.Println()
-		fmt.Println(v.Image)
+
+	for i := range data {
+		data[i].OtherCards = otherCards[i]
 	}
 
 	for i := range files {
