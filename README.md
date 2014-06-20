@@ -7,4 +7,4 @@ with the objective of training gender endings. The material included is for fren
 It reads an input directory containing folders with endings. Each ending contains a set of images.
 This structure is used in conjunction with a template to produce the finished cards:
 
-![Card for ending ette](https://github.com/tusj/word-gender-game/example.png "Card for ending -ette")
+![Card for ending ette](https://raw.githubusercontent.com/tusj/word-gender-game/master/example.png "Card for ending -ette")
