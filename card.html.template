@@ -8,28 +8,35 @@
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
 			/* outline: 1px dotted; */
+			outline: 0 dotted; /* hack to render pdf properly */
 		}
 		body {
+			width: 270mm;
+			height: 350mm; /* A4 */
 			font-size: 100%;
-			display: flex;
 			margin: 5mm;
+			display: flex;
+			flex-direction: row;
 			flex-wrap: wrap;
+			align-content: flex-start;
 		}
 		body>* {
-			margin: 5mm;
+			margin: 2mm;
 		}
 		h1, h2, h3 {
 			font-weight: normal;
 			text-align: center;
-			/* background: #F6F5DB; */
 			margin: 0;
 		}
 		h3 {
-			font-size: 50%;
-
+			font-size: 60%;
 		}
 		img {
 			display: block;
+			margin: 0 auto;
+			margin-bottom: auto;
+			max-width: 100%;
+			padding-bottom: auto;
 		}
 		.ending, .word,
 		.image, .other-cards {
@@ -37,19 +44,17 @@
 		}
 		.ending:before { content:"-"; }
 		.ending {
-			font-size: 350%;
-			top: -5%;
-			margin-bottom: -8%;
+			font-size: 475%;
+			top: -10%;
 			height: 20%;
 		}
 		.image {
 			height: 50%;
-			width: 100%;
-			margin: 0;
+			max-width: 100%;
 		}
 		.word {
 			height: 15%;
-			font-size: 160%;
+			font-size: 200%;
 			margin-bottom: 5%;
 			font-weight: lighter;
 		}
@@ -57,58 +62,48 @@
 			height: 15%;
 		}
 		.other-cards>* {
-			margin: 2%;
-			/* background: silver; */
+			margin: 0 2%;
+			height: 100%;
 			/* box-shadow: inset 0 0 10px silver; */
 			/* box-shadow: 0 8px 6px -6px silver; */
-			/* min-height: 20px; */
-			/* width: auto; */
 		}
 		.current {
 			border-radius: 10%;
 			box-shadow: 1px 1px 2px 2px silver;
-			/* background: grey; */
 		}
 		.card {
 			font-family: Satisfy, cursive;
 			font-family: 'Indie Flower', cursive;
 			font-weight:normal;
 			box-sizing: border-box;
-			box-shadow: inset 0 0 10px silver;
-			width:  6cm;
-			height: 9cm;
-			border: 2mm solid {{ .Color }};
+			width:  8cm;
+			height: 12cm;
 			border-radius: 15%;
-			/* outline: 1px dotted green; */
 			padding: calc(6cm/8);
-			/* border:30px solid transparent; */
 		}
 		.flex {
 			display: flex;
-			/* outline: 1px dotted grey; */
-			align-items: stretch;
-			/* align-content: center; */
-			justify-content: space-between;
 			/* flex-wrap: wrap; */
+		}
+		.flex>* {
+			max-height: 100%;
 		}
 		.flex.eq>* { flex: 1; }
 		.flex.hor { flex-direction: row; }
 		.flex.ver { flex-direction: column; }
 	</style>
 </head>
-<body>
-<div class="card">
+<body>{{ range .Cards }}
+<div class="card" style="border: 2mm solid {{ .Color }};box-shadow: inset 0 0 40px {{ .Color }};">
 	<h1 class="ending">{{ .Ending }}</h1>
 	<img class="image" src="{{ .Image }}"/>
 	<h2 class="word">{{ .Word }}</h2>
-	<div class="flex eq hor other-cards">
-		{{ range .OtherCards }}
-		<div class="flex eq ver">
+	<div class="flex eq hor other-cards">{{ range .OtherCards }}
+		<div class="flex ver">
 			<img src="{{ .Image }}"/>
 			<h3>{{ .Word }}</h3>
-		</div>
-		{{ end }}
+		</div>{{ end }}
 	</div>
-</div>
+</div>{{ end }}
 </body>
 </html>

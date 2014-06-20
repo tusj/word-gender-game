@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'/>
+	<meta charset="utf-8"/>
+	<link href='file:///home/s/jeu/style.css' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+<div class="card" style="border: 2mm solid {{ .Color }};box-shadow: inset 0 0 40px {{ .Color }};">
+	<h1 class="ending">{{ .Ending }}</h1>
+	<div class="flex eq ver card-refs">{{ range .CardRefs }}
+		<div class="flex hor card-ref">
+			<img src="{{ .Image }}"/>
+			<h3>{{ .Word }}</h3>
+		</div>{{ end }}
+	</div>
+</div>
+</body>
+</html>

@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="550"
-   height="400"
+   width="515.76312"
+   height="387.57065"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="ladybird.svg">
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="une coccinelle.svg">
   <title
      id="title4121">Ladybird</title>
   <defs
@@ -145,18 +145,22 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.2275"
-     inkscape:cx="259.92872"
-     inkscape:cy="200"
+     inkscape:cx="242.81027"
+     inkscape:cy="193.78533"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="712"
+     inkscape:window-width="1278"
+     inkscape:window-height="779"
      inkscape:window-x="0"
-     inkscape:window-y="27"
+     inkscape:window-y="19"
      inkscape:window-maximized="1"
      showguides="true"
-     inkscape:guide-bbox="true" />
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -208,7 +212,7 @@
      id="layer2"
      inkscape:label="ladybird"
      style="display:inline"
-     transform="translate(0,-652.36218)">
+     transform="translate(-17.118452,-658.57685)">
     <g
        id="g4083"
        transform="translate(-99.834991,318.46032)">

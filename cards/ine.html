@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<style>
+		*, *:before, *:after {
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			/* outline: 1px dotted; */
+			outline: 0 dotted; /* hack to render pdf properly */
+		}
+		body {
+			width: 270mm;
+			height: 350mm; /* A4 */
+			font-size: 100%;
+			margin: 5mm;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-content: flex-start;
+		}
+		body>* {
+			margin: 2mm;
+		}
+		h1, h2, h3 {
+			font-weight: normal;
+			text-align: center;
+			margin: 0;
+		}
+		h3 {
+			font-size: 60%;
+		}
+		img {
+			display: block;
+			margin: 0 auto;
+			margin-bottom: auto;
+			max-width: 100%;
+			padding-bottom: auto;
+		}
+		.ending, .word,
+		.image, .other-cards {
+			position: relative;
+		}
+		.ending:before { content:"-"; }
+		.ending {
+			font-size: 475%;
+			top: -10%;
+			height: 20%;
+		}
+		.image {
+			height: 50%;
+			max-width: 100%;
+		}
+		.word {
+			height: 15%;
+			font-size: 200%;
+			margin-bottom: 5%;
+			font-weight: lighter;
+		}
+		.other-cards {
+			height: 15%;
+		}
+		.other-cards>* {
+			margin: 0 2%;
+			height: 100%;
+			/* box-shadow: inset 0 0 10px silver; */
+			/* box-shadow: 0 8px 6px -6px silver; */
+		}
+		.current {
+			border-radius: 10%;
+			box-shadow: 1px 1px 2px 2px silver;
+		}
+		.card {
+			font-family: Satisfy, cursive;
+			font-family: 'Indie Flower', cursive;
+			font-weight:normal;
+			box-sizing: border-box;
+			width:  8cm;
+			height: 12cm;
+			border-radius: 15%;
+			padding: calc(6cm/8);
+		}
+		.flex {
+			display: flex;
+			/* flex-wrap: wrap; */
+		}
+		.flex>* {
+			max-height: 100%;
+		}
+		.flex.eq>* { flex: 1; }
+		.flex.hor { flex-direction: row; }
+		.flex.ver { flex-direction: column; }
+	</style>
+</head>
+<body>
+<div class="card" style="border: 2mm solid #20ae71;box-shadow: inset 0 0 40px #20ae71;">
+	<h1 class="ending">ine</h1>
+	<img class="image" src="file:///home/s/jeu/asset/ine/la%20farine.svg"/>
+	<h2 class="word">la farine</h2>
+	<div class="flex eq hor other-cards">
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cantine.svg"/>
+			<h3>cantine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cl%C3%A9mentine.png"/>
+			<h3>clémentine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20copine.svg"/>
+			<h3>copine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20narine.jpg"/>
+			<h3>narine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20%C3%A9pine.svg"/>
+			<h3>épine</h3>
+		</div>
+	</div>
+</div>
+<div class="card" style="border: 2mm solid #20ae71;box-shadow: inset 0 0 40px #20ae71;">
+	<h1 class="ending">ine</h1>
+	<img class="image" src="file:///home/s/jeu/asset/ine/une%20cantine.svg"/>
+	<h2 class="word">une cantine</h2>
+	<div class="flex eq hor other-cards">
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/la%20farine.svg"/>
+			<h3>farine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cl%C3%A9mentine.png"/>
+			<h3>clémentine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20copine.svg"/>
+			<h3>copine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20narine.jpg"/>
+			<h3>narine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20%C3%A9pine.svg"/>
+			<h3>épine</h3>
+		</div>
+	</div>
+</div>
+<div class="card" style="border: 2mm solid #20ae71;box-shadow: inset 0 0 40px #20ae71;">
+	<h1 class="ending">ine</h1>
+	<img class="image" src="file:///home/s/jeu/asset/ine/une%20cl%C3%A9mentine.png"/>
+	<h2 class="word">une clémentine</h2>
+	<div class="flex eq hor other-cards">
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/la%20farine.svg"/>
+			<h3>farine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cantine.svg"/>
+			<h3>cantine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20copine.svg"/>
+			<h3>copine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20narine.jpg"/>
+			<h3>narine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20%C3%A9pine.svg"/>
+			<h3>épine</h3>
+		</div>
+	</div>
+</div>
+<div class="card" style="border: 2mm solid #20ae71;box-shadow: inset 0 0 40px #20ae71;">
+	<h1 class="ending">ine</h1>
+	<img class="image" src="file:///home/s/jeu/asset/ine/une%20copine.svg"/>
+	<h2 class="word">une copine</h2>
+	<div class="flex eq hor other-cards">
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/la%20farine.svg"/>
+			<h3>farine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cantine.svg"/>
+			<h3>cantine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cl%C3%A9mentine.png"/>
+			<h3>clémentine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20narine.jpg"/>
+			<h3>narine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20%C3%A9pine.svg"/>
+			<h3>épine</h3>
+		</div>
+	</div>
+</div>
+<div class="card" style="border: 2mm solid #20ae71;box-shadow: inset 0 0 40px #20ae71;">
+	<h1 class="ending">ine</h1>
+	<img class="image" src="file:///home/s/jeu/asset/ine/une%20narine.jpg"/>
+	<h2 class="word">une narine</h2>
+	<div class="flex eq hor other-cards">
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/la%20farine.svg"/>
+			<h3>farine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cantine.svg"/>
+			<h3>cantine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cl%C3%A9mentine.png"/>
+			<h3>clémentine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20copine.svg"/>
+			<h3>copine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20%C3%A9pine.svg"/>
+			<h3>épine</h3>
+		</div>
+	</div>
+</div>
+<div class="card" style="border: 2mm solid #20ae71;box-shadow: inset 0 0 40px #20ae71;">
+	<h1 class="ending">ine</h1>
+	<img class="image" src="file:///home/s/jeu/asset/ine/une%20%C3%A9pine.svg"/>
+	<h2 class="word">une épine</h2>
+	<div class="flex eq hor other-cards">
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/la%20farine.svg"/>
+			<h3>farine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cantine.svg"/>
+			<h3>cantine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20cl%C3%A9mentine.png"/>
+			<h3>clémentine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20copine.svg"/>
+			<h3>copine</h3>
+		</div>
+		<div class="flex ver">
+			<img src="file:///home/s/jeu/asset/ine/une%20narine.jpg"/>
+			<h3>narine</h3>
+		</div>
+	</div>
+</div>
+</body>
+</html>
